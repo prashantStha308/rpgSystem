@@ -14,21 +14,24 @@ and everything else is magic's children?
 
 Class Levels:
 
-Character---> [ Magic , Shelths , Vigor ]
+Character---> [ Mage , Assassin , Fighter , Marksman ]
+
+// Tala ko chai banauna baki xa
+<<<<<<<<<<< Power Nature Mechanics >>>>>>>>>>>
 
 Magic ---> [ ...character ]
 
-Shelths ---> [ Assassin , Marksman ]
+Stamina ---> [ Assassin , Marksman ]
 
 Vigor ---> [ Fighter , Marksman ]
 
 */
 
-
 #include "../includes/mage.h"
 #include "../includes/fighter.h"
 #include "../includes/assassin.h"
 #include <vector>
+#include "../includes/colors.h"
 
 int main() {
     Mage mage("Gandalf");
@@ -40,7 +43,7 @@ int main() {
     characters[1]->setPosition( 20 , 85 );
     characters[2]->setPosition( 17 , 92 );
 
-    std::cout << "⚔️  Battle Start!\n\n";
+    std::cout << color::RED << "Bringing forth the War!! "<< color::RESET << "\n\n";
 
     for (auto* attacker : characters) {
         if( Assassin* targetAssassin = dynamic_cast<Assassin*>(attacker) ){

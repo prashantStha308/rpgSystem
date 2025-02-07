@@ -1,4 +1,5 @@
 #include "../includes/character.h"
+#include "../includes/colors.h"
 
 // Getters
 std::string Character::getName() const {
@@ -21,16 +22,17 @@ void Character::depleteResource ( unsigned int& resource , unsigned int deplete 
 
 void Character::displayStats(){
     std::cout<< "Stats of: " << getName() << "\n\n" <<
-        "\t - Health: " << health << " hp" << "\n\n"
+        color::GREEN << "\t - Health: " << health << " hp" << color::RESET
     << std::endl;
 }
 
-void Character::takeDamage(int damage) {
+void Character::takeDamage( unsigned int damage ) {
     // decrease from already existing health
     health -= damage;
     if (health < 0) {
         health = 0;
     }
+    std::cout<< this->getName() << " takes " << color::RED << damage << " damage" << color::RESET << std::endl;
     this->displayStats();
 }
 
@@ -38,14 +40,16 @@ void Character::setPosition( int x , int y  ){
     dx = x;
     dy = y;
 
-    std::cout << name <<" has moved to ( " << dx << " , " << dy << " )\n" << std::endl;
+    std::cout << color::MAGENTA << name <<" has moved to:"
+        << "( " << dx << " , " << dy << " )"
+    << color::RESET << std::endl;
 }
 
 void Character::move( Direction horizontal , Direction vertical , int x , int y){
 
     if ( (vertical == UP && horizontal == DOWN) || (vertical == DOWN && horizontal == UP) ||
         (horizontal == LEFT && horizontal == RIGHT) ) {
-        std::cout << "Invalid move! You can't move both vertically or horizontally in opposite directions.\n";
+        std::cout << color::DEEP_RED << "Invalid move! You can't move both vertically or horizontally in opposite directions.\n" << color::RESET;
         return;
     }
 

@@ -5,7 +5,7 @@ CXX = g++
 CXXFLAGS = -std=c++11 -Wall
 
 # Source files
-SRC = ./src/main.cpp ./src/mage.cpp ./src/fighter.cpp ./src/assassin.cpp ./src/character.cpp
+SRC = $(wildcard ./src/*.cpp)
 OBJ = $(SRC:.cpp=.o)
 
 # Executable name
