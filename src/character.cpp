@@ -19,20 +19,21 @@ void Character::depleteResource ( unsigned int& resource , unsigned int deplete 
         resource -= deplete;
     }
 }
-
+// Display the stats of the character
 void Character::displayStats(){
     std::cout<< "Stats of: " << getName() << "\n\n" <<
         color::GREEN << "\t - Health: " << health << " hp" << color::RESET
     << std::endl;
 }
 
+// The character takes damage
 void Character::takeDamage( unsigned int damage ) {
     // decrease from already existing health
     health -= damage;
     if (health < 0) {
         health = 0;
     }
-    std::cout<< this->getName() << " takes " << color::RED << damage << " damage" << color::RESET << std::endl;
+    std::cout<< color::CYAN << this->getName() << color::RESET << " takes " << color::RED << damage << " damage" << color::RESET << std::endl;
     this->displayStats();
 }
 
