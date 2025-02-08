@@ -10,19 +10,10 @@ class Marksman : public Character {
     public:
         Marksman( std::string name );
 
-        // Getters
-        unsigned int getVigor() const;
-        unsigned int getStamina() const;
         void displayStats() override;
+        void attack( Character& ) override;
 
-        void attack() override;
-
-        void depleteVigor();
-        void depleteStamina();
-
-        void gainVigor();
-        void gainStamina();
-}
+};
 
 
 #endif

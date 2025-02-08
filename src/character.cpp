@@ -1,8 +1,10 @@
 #include "../includes/character.h"
 #include "../includes/colors.h"
 
+Character::Character(std::string name = "unnamed nomad" , std::string _class = "peasent" , unsigned int hp = 100) : name(name), _class(_class) , health(hp) {}
+
 // Getters
-std::string Character::getName() const {
+std::string Character::getName() const { 
     return name;
 }
 
@@ -10,33 +12,19 @@ std::string Character::getClass() const {
     return _class;
 }
 
-void Character::depleteResource ( unsigned int& resource , unsigned int deplete , bool& isDepleted ){
-    if( isDepleted ) return;
-    if( resource < deplete ){
-        resource = 0;
-        isDepleted = true;
-    }else{
-        resource -= deplete;
-    }
-}
-// Display the stats of the character
-void Character::displayStats(){
-    std::cout<< "Stats of: " << getName() << "\n\n" <<
-        color::GREEN << "\t - Health: " << health << " hp" << color::RESET
-    << std::endl;
+unsigned int Character::getMana() const {
+    return mana;
 }
 
-// The character takes damage
-void Character::takeDamage( unsigned int damage ) {
-    // decrease from already existing health
-    health -= damage;
-    if (health < 0) {
-        health = 0;
-    }
-    std::cout<< color::CYAN << this->getName() << color::RESET << " takes " << color::RED << damage << " damage" << color::RESET << std::endl;
-    this->displayStats();
+unsigned int Character::getStamina() const {
+    return stamina;
 }
 
+unsigned int Character::getVigor() const {
+    return vigor;
+}
+
+// Setters
 void Character::setPosition( int x , int y  ){
     dx = x;
     dy = y;
@@ -46,6 +34,34 @@ void Character::setPosition( int x , int y  ){
     << color::RESET << std::endl;
 }
 
+void Character::setMana( unsigned int points ){
+    mana = points;
+}
+
+void Character::setStamina( unsigned int points ){
+    stamina = points;
+}
+
+void Character::setVigor( unsigned int points ){
+    vigor = points;
+}
+
+
+// Actions
+void Character::takeDamage(unsigned int damage) {
+    // Decrease from already existing health
+    if (damage >= health) {
+        health = 0; 
+    } else {
+        health -= damage;
+    }
+
+    std::cout << color::CYAN << getName() << color::RESET
+        << " takes " << color::RED << damage << " damage"
+        << color::RESET << std::endl;
+
+    displayStats();
+}
 void Character::move( Direction horizontal , Direction vertical , int x , int y){
 
     if ( (vertical == UP && horizontal == DOWN) || (vertical == DOWN && horizontal == UP) ||

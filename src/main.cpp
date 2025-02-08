@@ -27,28 +27,34 @@ Vigor ---> [ Fighter , Marksman ]
 
 */
 
+// C++ headers
+#include <vector>
+
+// character classes
 #include "../includes/mage.h"
 #include "../includes/fighter.h"
 #include "../includes/assassin.h"
-#include <vector>
+#include "../includes/marksman.h"
 #include "../includes/colors.h"
 
 int main() {
     Mage mage("Gandalf");
     Fighter fighter("Conan");
     Assassin assassin("Ezio");
+    Marksman marksman("Legolas");
 
-    std::vector<Character*> characters = {&mage, &fighter, &assassin};
+    std::vector<Character*> characters = { &mage, &fighter, &assassin , &marksman };
     characters[0]->setPosition( 12 , 98 );
     characters[1]->setPosition( 20 , 85 );
     characters[2]->setPosition( 17 , 92 );
+    characters[3]->setPosition( 22 , 83 );
+
+    int i = 1;
 
     std::cout << color::RED << "Bringing forth the War!! "<< color::RESET << "\n\n";
 
     for (auto* attacker : characters) {
-        if( Assassin* targetAssassin = dynamic_cast<Assassin*>(attacker) ){
-            targetAssassin->toggelStealth();
-        }
+        std::cout << color::MEDIUM_RED << " \tMatch - " << i++ << "!!" << color::RESET << std::endl;
         for (auto* target : characters) {
             if (attacker != target) {
                 attacker->attack(*target);

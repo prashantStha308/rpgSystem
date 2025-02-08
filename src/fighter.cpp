@@ -1,14 +1,17 @@
 #include "../includes/fighter.h"
 #include "../includes/colors.h"
 
-Fighter::Fighter( std::string name ) : Character( name , "Fighter" , 100) {}
-
-unsigned int Fighter::getVigor() const{
-    return vigor;
+Fighter::Fighter( std::string name ) : Character( name , "Fighter" , 100) {
+    setVigor( 100 );
 }
 
 void Fighter::attack(Character& target) {
-    std::cout << color::YELLOW << getName() << " swings a sword at " << target.getName() << "!\n" << color::RESET;
+
+    std::cout << color::YELLOW << getName()
+        << " swings a sword at " << target.getName()
+    << "!\n" << color::RESET;
+
+    depleteVigor( 10 );
     target.takeDamage( 28 );
 }
 
@@ -17,14 +20,4 @@ void Fighter::displayStats() {
         << color::GREEN << "\t - Health: " << health << " hp \n" << color::RESET
         << color::CYAN << "\t - Vigor: " << vigor << "vig"<< color::RESET
     << std::endl;
-}
-
-void Fighter::depleteVigor( unsigned int deplete){
-    depleteResource( vigor , deplete , depleted );
-    std::cout << color::BLUE << getName() << " consumed " << deplete << " vigor." << color::RESET << std::endl;
-}
-
-void Fighter::gainVigor( unsigned int gains ){
-    vigor += gains;
-    std::cout << color::GREEN << getName() << " gained " << gains << " vigor!" << color::RESET << std::endl;
 }
