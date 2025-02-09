@@ -74,11 +74,9 @@ int main() {
         for (auto* target : characters) {
             if (attacker != target) {
                 attacker->attack(*target);
-                // std::this_thread::sleep_for(std::chrono::milliseconds(1500));
                 loader(1);
                 attacker->setPosition( 10 , 5 );
             }
-            // std::this_thread::sleep_for( std::chrono::seconds(4) );
             loader(2);
         }
         std::cout << std::endl;
