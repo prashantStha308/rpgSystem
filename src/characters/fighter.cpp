@@ -1,18 +1,8 @@
-#include "../includes/fighter.h"
-#include "../includes/colors.h"
+#include "../../includes/fighter.h"
+#include "../../includes/colors.h"
 
 Fighter::Fighter( std::string name ) : Character( name , "Fighter" , 100) {
     setVigor( 100 );
-}
-
-void Fighter::attack(Character& target) {
-
-    std::cout << color::YELLOW << getName()
-        << " swings a sword at " << target.getName()
-    << "!\n" << color::RESET;
-
-    depleteVigor( 10 );
-    target.takeDamage( 28 );
 }
 
 void Fighter::displayStats() {

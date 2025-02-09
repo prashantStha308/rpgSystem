@@ -1,5 +1,5 @@
-#include "../includes/character.h"
-#include "../includes/colors.h"
+#include "../../includes/character.h"
+#include "../../includes/colors.h"
 
 // nature points manipulators
 void Character::depleteResource ( unsigned int& resource , unsigned int points , bool& isDepleted ){

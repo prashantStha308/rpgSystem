@@ -1,5 +1,5 @@
-#include "../includes/mage.h"
-#include "../includes/colors.h"
+#include "../../includes/mage.h"
+#include "../../includes/colors.h"
 
 Mage::Mage( std::string name ) : Character( name , "Mage" ,  80 ) {
     setMana( 300 );

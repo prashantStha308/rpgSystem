@@ -1,5 +1,5 @@
-#include  "../includes/marksman.h"
-#include "../includes/colors.h"
+#include  "../../includes/marksman.h"
+#include "../../includes/colors.h"
 
 Marksman::Marksman( std::string name ) : Character( name , "Marksman" , 75 ) {}
 
@@ -10,15 +10,4 @@ void Marksman::displayStats() {
         << color::CYAN << "\t - Stamina: " << stamina << "sta \n" << color::RESET
         << color::CYAN << "\t - Vigor: " << vigor << "vig \n" << color::RESET
     << std::endl;
-}
-
-void Marksman::attack( Character& target ){
-        std::cout << color::YELLOW << getName() 
-        << " strikes "
-        << target.getName()
-    << " with a bow!\n" << color::RESET;
-
-    depleteStamina( 10 );
-    depleteVigor( 20 );
-    target.takeDamage( 40 );
 }

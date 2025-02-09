@@ -31,11 +31,11 @@ Vigor ---> [ Fighter , Marksman ]
 #include <vector>
 
 // character classes
-#include "../includes/mage.h"
-#include "../includes/fighter.h"
-#include "../includes/assassin.h"
-#include "../includes/marksman.h"
-#include "../includes/colors.h"
+#include "./includes/mage.h"
+#include "./includes/fighter.h"
+#include "./includes/assassin.h"
+#include "./includes/marksman.h"
+#include "./includes/colors.h"
 
 int main() {
     Mage mage("Gandalf");

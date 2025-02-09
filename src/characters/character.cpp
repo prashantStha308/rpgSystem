@@ -1,5 +1,5 @@
-#include "../includes/character.h"
-#include "../includes/colors.h"
+#include "../../includes/character.h"
+#include "../../includes/colors.h"
 
 Character::Character(std::string name = "unnamed nomad" , std::string _class = "peasent" , unsigned int hp = 100) : name(name), _class(_class) , health(hp) {}
 
