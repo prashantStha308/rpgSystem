@@ -1,23 +1,29 @@
-#include "../../includes/mage.h"
-#include "../../includes/colors.h"
+#include<iostream>
+#include<string>
+// custom
+#include "mage.h"
+#include "colors.h"
+// namespaces
+using namespace std;
+using namespace color;
 
-Mage::Mage( std::string name ) : Character( name , "Mage" ,  80 ) {
-    setMana( 300 );
+Mage::Mage( string name ) : Character( name , "Mage" ,  80 ) {
+    resource.setMana( 300 );
 } 
 
 void Mage::attack(Character& target) {
 
-    std::cout << color::YELLOW << name << " strkes "
+    cout << YELLOW << name << " strkes "
         << target.getName() << "! with a lightning bolt\n"
-    << color::RESET;
+        << RESET;
 
     depleteMana( 30 );
     target.takeDamage(30);
 }
 
 void Mage::displayStats() {
-    std::cout<< "Stats of: " << color::WHITE << getName() << color::RESET << "\n"
-        << color::GREEN << "\t - Health: " << health << " hp \n" << color::RESET
-        << color::CYAN << "\t - Mana: " << getMana() << "mp"<< color::RESET
-    << std::endl;
+    cout<< "Stats of: " << WHITE << getName() << RESET << "\n"
+        << GREEN << "\t - Health: " << health << " hp \n" << RESET
+        << CYAN << "\t - Mana: " << resource.getMana() << "mp"<< RESET
+        << endl;
 }

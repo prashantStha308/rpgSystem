@@ -5,8 +5,6 @@
 
 class Marksman : public Character {
     private:
-        unsigned int vigor = 50;
-        unsigned int stamina = 50;
     public:
         Marksman( std::string name );
 

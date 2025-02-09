@@ -1,49 +1,84 @@
-#include "../../includes/character.h"
-#include "../../includes/colors.h"
+#include <iostream>
+#include<string>
+// custom
+#include "character.h"
+#include "colors.h"
+#include "positionManager.h"
 
-Character::Character(std::string name = "unnamed nomad" , std::string _class = "peasent" , unsigned int hp = 100) : name(name), _class(_class) , health(hp) {}
+// namespaces
+using namespace std; // std::cout<<...
+using namespace color; // color::RED....
+
+// Constructor
+Character::Character(std::string name, std::string _class, unsigned int hp, int posX, int posY)
+    : name(name), _class(_class), health(hp), position(posX, posY), resource() {}
 
 // Getters
-std::string Character::getName() const { 
-    return name;
-}
-
-std::string Character::getClass() const {
-    return _class;
-}
-
-unsigned int Character::getMana() const {
-    return mana;
-}
-
-unsigned int Character::getStamina() const {
-    return stamina;
-}
-
-unsigned int Character::getVigor() const {
-    return vigor;
-}
-
+string Character::getName() const { return name; }
+string Character::getClass() const { return _class; }
+unsigned int Character::getHealth() const { return health; }
 // Setters
 void Character::setPosition( int x , int y  ){
-    dx = x;
-    dy = y;
+    position.setPosition( x , y );
 
-    std::cout << color::MAGENTA << name <<" has moved to:"
-        << "( " << dx << " , " << dy << " )"
-    << color::RESET << std::endl;
+    cout << MAGENTA << name <<" has moved to:"
+        << "( " << position.getPositionX() << " , " << position.getPositionY() << " )"
+        << RESET << endl;
 }
 
-void Character::setMana( unsigned int points ){
-    mana = points;
+// Resources
+// depletes mana
+void Character::depleteMana( unsigned int points ){
+
+    resource.depleteResource( resource.getMana() , points , resource.getIsManaDepleted() );
+
+    cout << BLUE << getName() << " consumed "
+        << points << " mana." << RESET
+        << endl;
+}
+// depletes stamina
+void Character::depleteStamina( unsigned int points ){
+
+    resource.depleteResource( resource.getStamina() , points , resource.getIsStaminaDepleted() );
+
+    cout << BLUE << getName() << " consumed "
+        << points << " stamina points." << RESET
+        << endl;
+}
+// depletes vigor
+void Character::depleteVigor( unsigned int points ){
+
+    resource.depleteResource( resource.getVigor() , points , resource.getIsVigorDepleted() );
+
+    cout << BLUE << getName() << " consumed "
+        << points << " vigor." << RESET
+        << endl;
 }
 
-void Character::setStamina( unsigned int points ){
-    stamina = points;
-}
+// gains mana
+void Character::gainMana( unsigned int points ){
 
-void Character::setVigor( unsigned int points ){
-    vigor = points;
+    resource.gainResource( resource.getMana() , points , resource.getIsManaDepleted() );
+
+    cout << GREEN << getName() << " gained "
+        << points << " mana!" << RESET
+        << endl;
+}
+// gains stamina
+void Character::gainStamina( unsigned int points ){
+    resource.gainResource( resource.getStamina() , points , resource.getIsStaminaDepleted() );
+
+    cout << GREEN << getName() << " gained "
+        << points << " stamina!" << RESET
+        << endl;
+}
+// gains vigor
+void Character::gainVigor( unsigned int points ){
+    resource.gainResource( resource.getVigor() , points , resource.getIsVigorDepleted() );
+
+    cout << GREEN << getName() << " gained "
+        << points << " vigor!" << RESET
+        << endl;
 }
 
 
@@ -56,30 +91,9 @@ void Character::takeDamage(unsigned int damage) {
         health -= damage;
     }
 
-    std::cout << color::CYAN << getName() << color::RESET
-        << " takes " << color::RED << damage << " damage"
-        << color::RESET << std::endl;
+    cout << CYAN << getName() << RESET
+        << " takes " << RED << damage << " damage"
+        << RESET << endl;
 
     displayStats();
-}
-void Character::move( Direction horizontal , Direction vertical , int x , int y){
-
-    if ( (vertical == UP && horizontal == DOWN) || (vertical == DOWN && horizontal == UP) ||
-        (horizontal == LEFT && horizontal == RIGHT) ) {
-        std::cout << color::DEEP_RED << "Invalid move! You can't move both vertically or horizontally in opposite directions.\n" << color::RESET;
-        return;
-    }
-
-    if( vertical == UP ){
-        dy -= y;
-    }else{
-        dy += y;
-    }
-
-    if( horizontal == LEFT ){
-        dx -= x;
-    }else{
-        dx += x;
-    }
-    setPosition( dx , dy );
 }

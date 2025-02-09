@@ -29,13 +29,29 @@ Vigor ---> [ Fighter , Marksman ]
 
 // C++ headers
 #include <vector>
-
+#include<chrono>
+#include<thread>
 // character classes
-#include "./includes/mage.h"
-#include "./includes/fighter.h"
-#include "./includes/assassin.h"
-#include "./includes/marksman.h"
-#include "./includes/colors.h"
+#include "mage.h"
+#include "fighter.h"
+#include "assassin.h"
+#include "marksman.h"
+#include "colors.h"
+
+// ASCII loader
+void loader(int seconds) {
+    const char spinner[] = { '|', '/', '-', '\\' };
+    int i = 0;
+    int totalIterations = seconds * 2; 
+
+    for (int j = 0; j < totalIterations; ++j) {
+        std::cout << "\rLoading " << spinner[i];
+        std::cout.flush();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        i = (i + 1) % 4;  
+    }
+    std::cout<< "\r           \r\n";
+}
 
 int main() {
     Mage mage("Gandalf");
@@ -58,11 +74,18 @@ int main() {
         for (auto* target : characters) {
             if (attacker != target) {
                 attacker->attack(*target);
-                attacker->move( UP , LEFT , 10 , 5 );
+                // std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+                loader(1);
+                attacker->setPosition( 10 , 5 );
             }
+            // std::this_thread::sleep_for( std::chrono::seconds(4) );
+            loader(2);
         }
         std::cout << std::endl;
     }
+    std::cout << color::MEDIUM_RED
+        << "<<<<<<<<<<< The War Won >>>>>>>>>>> "
+        << color::RESET << std::endl;
 
     return 0;
 }

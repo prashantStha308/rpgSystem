@@ -1,14 +1,19 @@
+#include<iostream>
+#include<string>
+// custom
 #include "assassin.h"
 #include "colors.h"
+// namespaces
+using namespace std;
+using namespace color;
 
 // Actions
 void Assassin::attack( Character& target ) {
     if( !stealth ) toggelStealth();
 
-    std::cout << color::YELLOW << getName() 
-        << " strikes "
-        << target.getName()
-    << " from the shadows!\n" << color::RESET;
+    cout << YELLOW << getName() 
+        << " strikes " << target.getName()
+        << " from the shadows!\n" << RESET;
     
     depleteStamina( 10 );
     target.takeDamage( 25 );
@@ -19,9 +24,9 @@ void Assassin::attack( Character& target ) {
 void Assassin::toggelStealth(){
 
     if( !stealth ){
-        std::cout << color::BLUE << getName()
-            << " is activating stealth" << color::RESET
-        << std::endl;
+        cout << BLUE << getName()
+            << " is activating stealth" << RESET
+            << endl;
 
         depleteStamina(5);
     }

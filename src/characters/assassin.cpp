@@ -1,14 +1,20 @@
-#include "../../includes/assassin.h"
-#include "../../includes/colors.h"
+#include<iostream>
+#include<string>
 
-Assassin::Assassin( std::string name ) : Character( name , "Assassin" , 70 ) {
-    setStamina( 70 );
+#include "assassin.h"
+#include "colors.h"
+// namespaces
+using namespace std;
+using namespace color;
+
+Assassin::Assassin( string name ) : Character( name , "Assassin" , 70 ) {
+    resource.setStamina( 70 );
 } 
 
 void Assassin::displayStats() {
 
-    std::cout<< "Stats of: " << color::WHITE << getName() << color::RESET << "\n"
-        << color::GREEN << "\t - Health: " << health << " hp \n" << color::RESET
-        << color::CYAN << "\t - Stamina: " << stamina << "sta" << color::RESET 
-    << std::endl;
+    cout<< "Stats of: " << WHITE << getName() << RESET << "\n"
+        << GREEN << "\t - Health: " << health << " hp \n" << RESET
+        << CYAN << "\t - Stamina: " << resource.getStamina() << "sta" << RESET 
+        << endl;
 }

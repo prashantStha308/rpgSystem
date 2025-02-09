@@ -1,13 +1,20 @@
-#include "../../includes/fighter.h"
-#include "../../includes/colors.h"
+#include<iostream>
+#include<string>
+// custom
+#include "fighter.h"
+#include "colors.h"
 
-Fighter::Fighter( std::string name ) : Character( name , "Fighter" , 100) {
-    setVigor( 100 );
+// namespaces
+using namespace std;
+using namespace color;
+
+Fighter::Fighter( string name ) : Character( name , "Fighter" , 100) {
+    resource.setVigor( 100 );
 }
 
 void Fighter::displayStats() {
-    std::cout<< "Stats of: " << color::WHITE << getName() << "\n" << color::RESET
-        << color::GREEN << "\t - Health: " << health << " hp \n" << color::RESET
-        << color::CYAN << "\t - Vigor: " << vigor << "vig"<< color::RESET
-    << std::endl;
+    cout<< "Stats of: " << WHITE << getName() << "\n" << RESET
+        << GREEN << "\t - Health: " << health << " hp \n" << RESET
+        << CYAN << "\t - Vigor: " << resource.getVigor() << "vig"<< RESET
+        << endl;
 }
