@@ -2,10 +2,11 @@
 #define MAGE_H
 
 #include "character.h"
+#include "mageAttack.h"
 
 class Mage : public Character {
     private:
-    
+        MageAttack mage_attack;
     public:
         Mage( std::string name );
 

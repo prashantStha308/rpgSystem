@@ -7,19 +7,9 @@
 using namespace std;
 using namespace color;
 
-Mage::Mage( string name ) : Character( name , "Mage" ,  80 ) {
+Mage::Mage( string name ) : Character( name , "Mage" ,  80 ) , mage_attack(*this) {
     resource.setMana( 300 );
 } 
-
-void Mage::attack(Character& target) {
-
-    cout << YELLOW << name << " strkes "
-        << target.getName() << "! with a lightning bolt\n"
-        << RESET;
-
-    depleteMana( 30 );
-    target.takeDamage(30);
-}
 
 void Mage::displayStats() {
     cout<< "Stats of: " << WHITE << getName() << RESET << "\n"

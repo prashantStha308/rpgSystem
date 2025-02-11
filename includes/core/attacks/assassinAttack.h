@@ -14,7 +14,7 @@ class AssassinAttack : public Attack {
         PositionManager position;
         // Resources
         ResourceManager resource;
-
+        // Attack essentials
         unsigned int baseDmg;
         bool stealth = false;
     public:
