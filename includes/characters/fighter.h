@@ -3,6 +3,7 @@
 
 #include "character.h"
 
+
 class Fighter : public Character {
     private:
 
@@ -10,7 +11,7 @@ class Fighter : public Character {
         Fighter( std::string name );
         
         void displayStats() override;
-        void attack(Character& target) override;;
+        void attack(Character& target) override;
 };
 
 #endif

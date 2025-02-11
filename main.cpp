@@ -45,7 +45,7 @@ void loader(int seconds) {
     int totalIterations = seconds * 2; 
 
     for (int j = 0; j < totalIterations; ++j) {
-        std::cout << "\rLoading " << spinner[i];
+        std::cout << "\r " << spinner[i];
         std::cout.flush();
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         i = (i + 1) % 4;  

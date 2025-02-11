@@ -9,26 +9,24 @@ using namespace color;
 
 // Actions
 void Assassin::attack( Character& target ) {
-    if( !stealth ) toggelStealth();
+    if( !assassin_attack.getStealth() ) toggelStealth();
 
     cout << YELLOW << getName() 
         << " strikes " << target.getName()
         << " from the shadows!\n" << RESET;
-    
-    depleteStamina( 10 );
-    target.takeDamage( 25 );
-    if( stealth ) toggelStealth();
+
+    assassin_attack.execute( *this , target );
 }
 
 // Skill actions
 void Assassin::toggelStealth(){
 
-    if( !stealth ){
+    if( !assassin_attack.getStealth() ){
         cout << BLUE << getName()
             << " is activating stealth" << RESET
             << endl;
 
         depleteStamina(5);
     }
-    stealth = !stealth;
+    assassin_attack.toggleStealth();
 }

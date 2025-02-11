@@ -5,7 +5,7 @@
 
 class Attack{
     public:
-    virtual void execute( Character& , Character& ) = 0;
+    virtual void execute( Character& ) = 0;
     ~Attack() {}
 };
 

@@ -26,6 +26,19 @@ void Character::setPosition( int x , int y  ){
         << RESET << endl;
 }
 
+// Virtual functions
+void Character::attack( Character& target ){
+    cout << YELLOW << getName() 
+        << " attacked " << target.getName()
+        << "\n" << RESET;
+}
+
+void Character::displayStats(){
+    cout<< "Stats of: " << WHITE << getName() << "\n" << RESET
+        << GREEN << "\t - Health: " << health << " hp \n" << RESET
+        << endl;
+}
+
 // Resources
 // depletes mana
 void Character::depleteMana( unsigned int points ){

@@ -2,20 +2,24 @@
 #define ASSASSIN_H
 
 #include "character.h"
+#include "assassinAttack.h"
 
 class Assassin : public Character {
     private:
-        bool stealth = false;
+        AssassinAttack assassin_attack;
     public:
         Assassin(std::string name);
+
+        // Getters
+        bool& getStealth();
+
+        // Setters
+        void toggelStealth();
+        void setStealth( bool );
         
         void displayStats() override;
         void attack(Character& target) override;
-        /**
-         * @brief toggels the value of stealth.
-         * @note activating stealth costs 5 stamina
-         */
-        void toggelStealth();
+
 
 };
 

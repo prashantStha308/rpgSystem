@@ -3,15 +3,27 @@
 
 #include "attack.h"
 #include "character.h"
+#include "positionManager.h"
+#include "resourceManager.h"
 
 class AssassinAttack : public Attack {
     protected:
+        // Class's instances
+        Character& owner;
+        // Position
+        PositionManager position;
+        // Resources
+        ResourceManager resource;
 
         unsigned int baseDmg;
         bool stealth = false;
-
     public:
-        void execute( Character& , Character& ) override;
+        AssassinAttack( Character& );
+        /**
+         * @brief
+         * execute( Character& target )
+         */
+        void execute( Character& ) override;
 
         // Stealth
         void setStealth(bool);

@@ -13,7 +13,7 @@ protected:
     std::string name;
     std::string _class;
     unsigned int health;
-
+    // Positoin / Face Direction
     PositionManager position; //handel position
     // Resources
     ResourceManager resource; //to handel resources
@@ -23,8 +23,8 @@ public:
     Character(std::string name, std::string _class, unsigned int hp, int posX = 0, int posY = 0);
 
     // Pure Virtual Functions
-    virtual void attack(Character& target) = 0;
-    virtual void displayStats() = 0;
+    virtual void attack(Character& target);
+    virtual void displayStats();
 
     // Getters
     std::string getName() const;

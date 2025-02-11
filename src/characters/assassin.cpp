@@ -7,9 +7,17 @@
 using namespace std;
 using namespace color;
 
-Assassin::Assassin( string name ) : Character( name , "Assassin" , 70 ) {
-    resource.setStamina( 70 );
-} 
+Assassin::Assassin(string name) 
+    : Character(name, "Assassin", 70), assassin_attack(*this) {
+    resource.setStamina(70);
+}
+
+// Getters
+bool& Assassin::getStealth() { return assassin_attack.getStealth(); }
+
+// Setters
+void Assassin::setStealth( bool state ){ assassin_attack.setStealth( state ); }
+
 
 void Assassin::displayStats() {
 
