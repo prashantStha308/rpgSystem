@@ -15,7 +15,7 @@ void Assassin::attack( Character& target ) {
         << " strikes " << target.getName()
         << " from the shadows!\n" << RESET;
 
-    assassin_attack.execute( *this , target );
+    assassin_attack.execute( target );
 }
 
 // Skill actions
