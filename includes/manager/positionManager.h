@@ -1,6 +1,8 @@
 #ifndef POSITIONMANAGER_H
 #define POSITIONMANAGER_H
 
+#include<utility>
+
 enum Direction {
     LEFT,
     RIGHT,
@@ -25,19 +27,23 @@ class PositionManager{
     int getPositionY();
     Direction getFaceDirectionX();
     Direction getFaceDirectionY();
+    /**
+     * @brief Returns a pair of int Usages:
+     * ```
+     * pair<int , int> pos = position.getPosition();
+     * OR
+     * auto pos = position.getPosition();
+     * ```
+     */
+    std::pair< int , int > getPosition();
 
     // Setters
-    /**
-     * @brief
-     * `setPosition( int x , int y ) - Sets the position of character`
-     * 
-     */
     void setPosition( int x , int y );
     void setPositionX( int x );
     void setPositionY( int y );
 
     // Actions
-    void move( Direction , Direction );
+    void moveFace( Direction , Direction );
 
 };
 

@@ -9,9 +9,9 @@ class ResourceManager{
         unsigned int stamina = 0;
         unsigned int vigor = 0;
         // Resource flags
-        bool isManaDepleted = true;
-        bool isStaminaDepleted = true;
-        bool isVigorDepleted = true;
+        bool isManaDepleted = false;
+        bool isStaminaDepleted = false;
+        bool isVigorDepleted = false;
 
     public:
         // Setters

@@ -1,5 +1,6 @@
 #include <iostream>
 #include<string>
+#include<utility>
 // custom
 #include "character.h"
 #include "colors.h"
@@ -17,6 +18,10 @@ Character::Character(std::string name, std::string _class, unsigned int hp, int 
 string Character::getName() const { return name; }
 string Character::getClass() const { return _class; }
 unsigned int Character::getHealth() const { return health; }
+pair<int, int> Character::getPosition() { return { position.getPosition() }; }
+
+
+
 // Setters
 void Character::setPosition( int x , int y  ){
     position.setPosition( x , y );

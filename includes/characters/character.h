@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include<utility>
 
 #include "resourceManager.h"
 #include "positionManager.h"
@@ -30,6 +31,7 @@ public:
     std::string getName() const;
     std::string getClass() const;
     unsigned int getHealth() const;
+    std::pair< int , int > getPosition();
 
     // Setters
     void setPosition( int x , int y );

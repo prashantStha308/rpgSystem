@@ -30,9 +30,18 @@ bool& ResourceManager::getIsVigorDepleted() { return isVigorDepleted; }
 bool& ResourceManager::getIsManaDepleted() { return isManaDepleted; }
 
 // Setters
-void ResourceManager::setStamina(unsigned int amount) { stamina = amount; }
-void ResourceManager::setVigor(unsigned int amount) { vigor = amount; }
-void ResourceManager::setMana(unsigned int amount) { mana = amount; }
+void ResourceManager::setStamina(unsigned int amount) {
+    stamina = amount;
+    isStaminaDepleted = stamina > 0 && false;
+}
+void ResourceManager::setVigor(unsigned int amount) {
+    vigor = amount;
+    isVigorDepleted = vigor > 0 && false;
+}
+void ResourceManager::setMana(unsigned int amount) {
+    mana = amount;
+    isManaDepleted = mana > 0 && false;
+}
 // Flag Setters
 void ResourceManager::setIsStaminaDepleted( bool flag ) { isStaminaDepleted = flag; }
 void ResourceManager::setIsManaDepleted( bool flag ) { isManaDepleted = flag; }

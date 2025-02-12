@@ -9,4 +9,5 @@ using namespace color;
 
 void Mage::attack(Character& target) {
     mage_attack.execute( target );
+    mage_attack.fireBall( target );
 }

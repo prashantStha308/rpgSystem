@@ -29,29 +29,15 @@ Vigor ---> [ Fighter , Marksman ]
 
 // C++ headers
 #include <vector>
-#include<chrono>
-#include<thread>
 // character classes
 #include "mage.h"
 #include "fighter.h"
 #include "assassin.h"
 #include "marksman.h"
 #include "colors.h"
+#include "loader.cpp"
 
-// ASCII loader
-void loader(int seconds) {
-    const char spinner[] = { '|', '/', '-', '\\' };
-    int i = 0;
-    int totalIterations = seconds * 2; 
 
-    for (int j = 0; j < totalIterations; ++j) {
-        std::cout << "\r " << spinner[i];
-        std::cout.flush();
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        i = (i + 1) % 4;  
-    }
-    std::cout<< "\r           \r\n";
-}
 
 int main() {
     Mage mage("Gandalf");
@@ -68,6 +54,10 @@ int main() {
     int i = 1;
 
     std::cout << color::RED << "Bringing forth the War!! "<< color::RESET << "\n\n";
+
+    for( auto* character : characters ){
+        character->displayStats();
+    }
 
     for (auto* attacker : characters) {
         std::cout << color::MEDIUM_RED << " \tMatch - " << i++ << "!!" << color::RESET << std::endl;
