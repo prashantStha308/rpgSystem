@@ -28,7 +28,7 @@ void Character::setPosition( int x , int y  ){
 
     cout << MAGENTA << name <<" has moved to:"
         << "( " << position.getPositionX() << " , " << position.getPositionY() << " )"
-        << RESET << endl;
+        << RESET << endl ;
 }
 
 // Virtual functions

@@ -35,7 +35,7 @@ Vigor ---> [ Fighter , Marksman ]
 #include "assassin.h"
 #include "marksman.h"
 #include "colors.h"
-#include "loader.cpp"
+#include "loader.h"
 
 
 
@@ -69,7 +69,7 @@ int main() {
             }
             loader(2);
         }
-        std::cout << std::endl;
+        // std::cout << std::endl;
     }
     std::cout << color::MEDIUM_RED
         << "<<<<<<<<<<< The War Won >>>>>>>>>>> "

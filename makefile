@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall $(INCLUDE_DIRS)
+CXXFLAGS = -std=c++11 -Wall -g $(INCLUDE_DIRS)
 
 # Directories
 SRC_DIR = ./src

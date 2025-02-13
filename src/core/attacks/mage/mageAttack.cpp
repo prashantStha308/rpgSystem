@@ -1,7 +1,5 @@
 #include<iostream>
 #include<utility>
-#include<chrono>
-#include<thread>
 #include<cmath>
 #include<tuple>
 
@@ -33,13 +31,15 @@ void MageAttack::execute( Character& target ){
     target.takeDamage( baseDmg );
 }
 
-// Render objects
+// Spell Helpers
+// Fireball helpers
 pair< int , int > MageAttack::getFireballPosition(){
     list atk_position = owner.getPosition();
     Direction faceX = position.getFaceDirectionX();
     Direction faceY = position.getFaceDirectionY();
 
-    int posX , posY;
+    int posX = atk_position.first;
+    int posY = atk_position.second;
     int STEP_COUNT = 5;
     
     if( faceX == RIGHT ){
@@ -53,7 +53,7 @@ pair< int , int > MageAttack::getFireballPosition(){
     }else if( faceY == DOWN ){
         posY = atk_position.second - STEP_COUNT;
     }
-    
+
     return { posX , posY };
 }
 
@@ -77,22 +77,23 @@ void MageAttack::fireBall( Character& target ) {
     int MAX_RANGE = 120;
     int baseDmg = 50;
     bool gotHit = false;
+    
     // Positions
     list targetPosition = target.getPosition();
     list fireballPosition = getFireballPosition();
-
     int fireX = fireballPosition.first;
     int fireY = fireballPosition.second;
     // storing current positions to check range
     int startPositionX = fireX;
     int startPositionY = fireY;
-
+    // get normalized distances
     tuple<int, int, int> normalizedDir = getNormalizedDirection(targetPosition, fireballPosition);
     int dx_normalized = get<0>(normalizedDir);
     int dy_normalized = get<1>(normalizedDir);
     int distance = get<2>(normalizedDir);
-
+    // loop till fireball reached MAX_RANGE
     while (distance > 0 && abs(fireX - startPositionX) <= MAX_RANGE && abs(fireY - startPositionY) <= MAX_RANGE) {
+
         fireX += dx_normalized * speed;
         fireY += dy_normalized * speed;
 
@@ -115,8 +116,6 @@ void MageAttack::fireBall( Character& target ) {
             gotHit = true;
             break; // Stop the fireball after it hits the target
         }
-
-        this_thread::sleep_for(chrono::microseconds(50));
     }
 
     if (gotHit) {
@@ -124,4 +123,35 @@ void MageAttack::fireBall( Character& target ) {
     } else {
         cout << MEDIUM_RED << "Fireball missed " << RESET << endl;
     }
+    gotHit = false;
+}
+
+/*
+Thunder bolds will appear roughly within an area defined by a circle.
+The target must be at a range of 50 from the attacker. i.e: ( target.position - owner.position <= 50 )
+.. Hence, MAX_RANGE = 50
+
+Each thunderbold can have an AOE at radius ranging from ( 15 - 30 )
+The damage of each thunderbold: in range of ( 5 - 40 )
+Number of thunderbold can range from ( 11 - 15 ) and will appear at random position within the area of the circle
+
+Damage with respect to radius : 
+    less than 80% of radius : 20% of damage
+    less than 55% of radius : 60% of damage
+    less than 50% of radius : 95% of damage 
+    less than 30% of radius : 100% of damage
+
+
+Now, circle ko farthest point must not be greater than the MAX_RANGE
+So, we're looking at the complete circumference and not just the radius while constructing the circle.
+
+If enough area is available, the circle's centre == target's position.
+if not:
+    circle's center == target's position +- x/y
+    +- and x/y will depend on the which face is active of the Owner. 
+
+*/
+
+void MageAttack::thunderBelt( Character& target ){
+
 }

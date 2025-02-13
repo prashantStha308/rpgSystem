@@ -23,23 +23,23 @@ class PositionManager{
     PositionManager( int , int );
 
     // Getters
+    // Returns Position on X axis
     int getPositionX();
+    // Returns Position on Y axis
     int getPositionY();
+    // Returns face direction on X axis.
     Direction getFaceDirectionX();
+    // Returns face direction on Y axis.
     Direction getFaceDirectionY();
-    /**
-     * @brief Returns a pair of int Usages:
-     * ```
-     * pair<int , int> pos = position.getPosition();
-     * OR
-     * auto pos = position.getPosition();
-     * ```
-     */
+    // returns position as pair of int.
     std::pair< int , int > getPosition();
 
     // Setters
+    // Sets up position.
     void setPosition( int x , int y );
+    // Sets up position on x axis.
     void setPositionX( int x );
+    // Sets up position on y axis.
     void setPositionY( int y );
 
     // Actions

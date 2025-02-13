@@ -1,11 +1,13 @@
+#include<iostream>
 #include<chrono>
 #include<thread>
+#include "loader.h"
 
 // ASCII loader. Takes input in seconds
-void loader(int seconds) {
+void loader(float seconds) {
     const char spinner[] = { '|', '/', '-', '\\' };
     int i = 0;
-    int totalIterations = seconds * 2; 
+    float totalIterations = seconds * 2; 
 
     for (int j = 0; j < totalIterations; ++j) {
         std::cout << "\r " << spinner[i];
